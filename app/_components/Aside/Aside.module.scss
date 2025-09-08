@@ -1,0 +1,10 @@
+.aside {
+	padding: 0.2rem;
+	transform: rotate(90deg);
+	&__body {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+	}
+}

@@ -1,0 +1,32 @@
+@use "../styles/variables" as *;
+
+// Container Mixin
+// This mixin creates a responsive container with a maximum width and gutter padding.
+// Usage: @include container($max-width, $gutter-padding);
+@mixin container($maxWidth, $gutterPadding) {
+	max-width: $maxWidth;
+	width: 100%;
+	margin-inline: auto;
+	padding-inline: $gutterPadding;
+}
+
+// Adaptive Value
+@mixin adaptive-value($property, $startSize, $minSize, $type) {
+	$addSize: $startSize - $minSize;
+	@if $type==px {
+		//px
+		#{$property}: $startSize + px;
+		@media (max-width: #{($maxWidthContainer * 10) + px}) {
+			#{$property}: calc(#{$minSize + px} + #{$addSize} * ((100vw - 320px) / #{($maxWidthContainer * 10) - 320}));
+		}
+	} @else if $type==rem {
+		//rem
+		#{$property}: $startSize + rem;
+		@media (max-width: #{($maxWidthContainer / 1.6) + rem}) {
+			#{$property}: calc(#{$minSize + rem} + #{$addSize} * ((100vw - 32rem) / #{$maxWidthContainer - 32}));
+		}
+	} @else {
+		//Всегда
+		#{$property}: calc(#{$minSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidth - 320}));
+	}
+}

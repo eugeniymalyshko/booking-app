@@ -1,0 +1,33 @@
+.button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	background-color: orange;
+	min-width: 10rem;
+	min-height: 4rem;
+	&_big {
+		min-width: 15rem;
+		min-height: 5rem;
+	}
+	&_medium {
+		min-width: 12rem;
+		min-height: 4rem;
+	}
+	&_small {
+		min-width: 8rem;
+		min-height: 3rem;
+	}
+	&_primary {
+		background-color: blue;
+		color: white;
+	}
+	&_secondary {
+		background-color: gray;
+		color: black;
+	}
+	&_disabled {
+		background-color: lightgray;
+		color: darkgray;
+		cursor: not-allowed;
+	}
+}

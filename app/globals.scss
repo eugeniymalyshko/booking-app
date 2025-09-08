@@ -1,0 +1,18 @@
+@use "../styles/reset.scss" as *;
+@use "../styles/variables" as *;
+@use "../styles/mixin" as *;
+
+.wrapper {
+	width: 100%;
+	min-height: 100%;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	> main {
+		flex: 1 1 auto;
+	}
+}
+
+.container {
+	@include container($maxWidth: 120rem, $gutterPadding: 1.5rem);
+}

@@ -1,0 +1,125 @@
+{
+  "restaurants": [
+    {
+      "id": 1,
+      "name": "Demo Resto",
+      "timeSlotsMinutes": 120
+    }
+  ],
+  "areas": [
+    {
+      "id": 1,
+      "restaurantId": 1,
+      "name": "Основний зал"
+    },
+    {
+      "id": 2,
+      "restaurantId": 1,
+      "name": "VIP зал"
+    }
+  ],
+  "tables": [
+    {
+      "id": 1,
+      "restaurantId": 1,
+      "areaId": 1,
+      "label": "C1",
+      "capacity": 4,
+      "turnoverMinutes": null,
+      "isActive": true,
+      "positionX": 20,
+      "positionY": 30
+    },
+    {
+      "id": 2,
+      "restaurantId": 1,
+      "areaId": 1,
+      "label": "C2",
+      "capacity": 6,
+      "turnoverMinutes": null,
+      "isActive": true,
+      "positionX": 50,
+      "positionY": 40
+    },
+    {
+      "id": 3,
+      "restaurantId": 1,
+      "areaId": 1,
+      "label": "C3",
+      "capacity": 2,
+      "turnoverMinutes": null,
+      "isActive": true,
+      "positionX": 70,
+      "positionY": 20
+    },
+    {
+      "id": 4,
+      "restaurantId": 1,
+      "areaId": 1,
+      "label": "C4",
+      "capacity": 8,
+      "turnoverMinutes": null,
+      "isActive": true,
+      "positionX": 80,
+      "positionY": 60
+    },
+    {
+      "id": 5,
+      "restaurantId": 1,
+      "label": "C5",
+      "capacity": 10,
+      "areaId": 1,
+      "turnoverMinutes": null,
+      "isActive": true,
+      "positionX": 30,
+      "positionY": 80
+    },
+    {
+      "id": 6,
+      "restaurantId": 1,
+      "label": "C6",
+      "capacity": 12,
+      "areaId": 2,
+      "turnoverMinutes": null,
+      "positionX": 60,
+      "positionY": 50
+    }
+  ],
+  "reservations": [
+    {
+      "id": 1001,
+      "restaurantId": 1,
+      "name": "Іван",
+      "phone": "+380000000000",
+      "startAt": "2025-08-18T18:00:00+03:00",
+      "endAt": null,
+      "durationMin": 120,
+      "status": "Підтверджений",
+      "tableIds": [1]
+    },
+    {
+      "id": 1002,
+      "restaurantId": 1,
+      "name": "Оля",
+      "phone": "+380000000002",
+      "startAt": "2025-08-19T19:00:00+03:00",
+      "endAt": "2025-08-19T21:00:00+03:00",
+      "status": "Очікує підтвердження",
+      "tableIds": [2]
+    }
+  ],
+  "customers": [
+    {
+      "id": 1,
+      "restaurantId": 1,
+      "fullName": "Іван Петренко",
+      "phone": "+380501234567"
+    },
+    {
+      "id": 2,
+      "restaurantId": 1,
+      "fullName": "Марія Коваль",
+      "phone": "+380501112244"
+    }
+  ]
+}

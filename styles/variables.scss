@@ -1,0 +1,16 @@
+//------------- Variables ----------------
+$fontSize: 62.5%;
+$minWidth: 32rem;
+$maxWidth: 144rem;
+$maxWidthContainer: 130;
+
+$containerPadding: 1.5;
+$responsiveType: 1;
+
+$sm: 29.998em; // 479,98px
+$md: 47.998em; // 767,98px
+$tab: 61.998em; // 991,98px
+$laptop: 75em; // 1200px
+$pc: $maxWidthContainer / 1.6 + em;
+
+$mainColor: #000;
