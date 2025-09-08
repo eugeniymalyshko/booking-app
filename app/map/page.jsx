@@ -2,12 +2,14 @@
 import Aside from "@/app/_components/Aside/Aside";
 import Tables from "@/app/_components/Tables/Tables";
 import styles from "./map.module.scss";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import BookingForm from "../_components/BookingForm/BookingForm";
 import { getTodayDate } from "@/helpers/getTodayDate";
+import { toKyivTime, formatOnlyDate, formatOnlyTime } from "@/helpers/date";
 
 export default function Map() {
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const [reservations, setReservations] = useState([]);
   const [isFormOpen, setIsFormOpen] = useState(false);
 
   function handleOpenForm() {
@@ -28,6 +30,13 @@ export default function Map() {
       return date;
     });
   }
+
+  // GET all reservations
+  useEffect(() => {
+    fetch("/api/reservations")
+      .then((result) => result.json())
+      .then(setReservations);
+  }, []);
 
   return (
     <div className={styles.map}>
@@ -50,9 +59,27 @@ export default function Map() {
           </button>
         </div>
         <div className={styles.map__content}>
-          <Tables selectedDate={selectedDate} isFormOpen={isFormOpen} />
+          <Tables
+            selectedDate={selectedDate}
+            isFormOpen={isFormOpen}
+            reservation={reservations}
+          />
         </div>
-        <div>test</div>
+        <div>
+          {reservations.map((reservation) => (
+            <li key={reservation.id}>
+              <span>{reservation.firstName}&nbsp;</span>
+              <span>{reservation.lastName}&nbsp;</span>
+              <span>{reservation.tableId}&nbsp;</span>
+              <span>{toKyivTime(reservation.startAt)}&nbsp;</span>
+              <br />
+              <span>{formatOnlyDate(reservation.startAt)}&nbsp;</span>
+              <br />
+              <span>{formatOnlyTime(reservation.startAt)}&nbsp;</span>
+              <br />
+            </li>
+          ))}
+        </div>
       </div>
       <Aside handleOpenForm={handleOpenForm} />
     </div>

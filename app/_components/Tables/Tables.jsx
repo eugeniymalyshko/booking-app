@@ -12,9 +12,10 @@ export default function Tables({
   selectedDate,
   startAt: initialStartAt,
   durationMin = 120,
+  reservations,
 }) {
   const [tables, setTables] = useState([]);
-  const [reservations, setReservations] = useState([]);
+
   const [openId, setOpenId] = useState(null);
   const [busy, setBusy] = useState(new Set());
   // Set default startAt to current date/time if not provided
@@ -31,13 +32,6 @@ export default function Tables({
     fetch(`/api/tables`)
       .then((result) => result.json())
       .then(setTables);
-  }, []);
-
-  // GET all reservations
-  useEffect(() => {
-    fetch("/api/reservations")
-      .then((result) => result.json())
-      .then(setReservations);
   }, []);
 
   useEffect(() => {
