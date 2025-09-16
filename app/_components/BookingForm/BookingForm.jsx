@@ -1,6 +1,6 @@
 "use client";
-import { use, useState } from "react";
-import { getTodayDate } from "@/helpers/getTodayDate";
+import { useState } from "react";
+// import { getTodayDate } from "@/helpers/getTodayDate";
 import styles from "./BookingForm.module.scss";
 
 export default function BookingForm({ handleOpenForm }) {

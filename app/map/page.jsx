@@ -3,8 +3,7 @@ import Aside from "@/app/_components/Aside/Aside";
 import Tables from "@/app/_components/Tables/Tables";
 import styles from "./map.module.scss";
 import { useEffect, useState } from "react";
-import BookingForm from "../_components/BookingForm/BookingForm";
-import { getTodayDate } from "@/helpers/getTodayDate";
+import BookingForm from "@/app/_components/BookingForm/BookingForm";
 import { toKyivTime, formatOnlyDate, formatOnlyTime } from "@/helpers/date";
 
 export default function Map() {
