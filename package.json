@@ -13,6 +13,7 @@
     "seed": "node prisma/seed.js"
   },
   "dependencies": {
+    "@auth/prisma-adapter": "^2.10.0",
     "@prisma/client": "^6.15.0",
     "bcrypt": "^6.0.0",
     "dayjs": "^1.11.13",
