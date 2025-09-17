@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { prisma } from "@/app/lib/prisma";
+import prisma from "@/app/lib/prisma";
 import { overlaps, endWithDesired } from "@/helpers/overlap";
 
 export async function GET(req) {

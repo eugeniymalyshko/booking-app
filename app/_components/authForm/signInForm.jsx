@@ -8,13 +8,17 @@ export default function signInForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  async function formSubmit(e) {
-    e.preventDefault();
+  async function formSubmit() {
     const singInData = await signIn("credentials", {
-      username: username,
-      password: password,
+      username,
+      password,
+      redirect: false,
     });
     console.log(singInData);
+
+    if (singInData?.error) {
+      console.log(singInData.error);
+    }
   }
   return (
     <form onSubmit={formSubmit}>

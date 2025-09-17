@@ -33,7 +33,7 @@ export default function Tables({
       .then((result) => result.json())
       .then(setTables);
   }, []);
-
+  // GET busy tables based on startAt and durationMin
   useEffect(() => {
     if (!startAt) return;
 

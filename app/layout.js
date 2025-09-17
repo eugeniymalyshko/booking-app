@@ -1,5 +1,6 @@
 import Header from "@/app/_components/Header/Header";
 import "./globals.scss";
+import AuthSessionProvider from "@/app/_providers/SessionProvider";
 
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
@@ -22,9 +23,11 @@ export default function RootLayout({ children }) {
       <body
       // className={`${geistSans.variable} ${geistMono.variable}`}
       >
-        <div className="wrapper">
-          <div className="container">{children}</div>
-        </div>
+        <AuthSessionProvider>
+          <div className="wrapper">
+            <div className="container">{children}</div>
+          </div>
+        </AuthSessionProvider>
       </body>
     </html>
   );
