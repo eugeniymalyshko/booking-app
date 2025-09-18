@@ -1,4 +1,4 @@
-import SignInForm from "@/app/_components/authForm/signInForm.jsx";
+import SignInForm from "@/app/_components/SignInForm.jsx";
 
 export default function page() {
   return (

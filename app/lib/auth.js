@@ -1,52 +1,41 @@
+import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import prisma from "@/app/lib/prisma";
+import { PrismaAdapter } from "@auth/prisma-adapter";
+import { prisma } from "@/app/lib/prisma";
 import { compare } from "bcrypt";
 
-export const authOptions = {
-  providers: [
-    CredentialsProvider({
-      name: "Login & Password",
-      credentials: {
-        username: { label: "Username", type: "text", placeholder: "Логін" },
-        password: { label: "Password", type: "password" },
-      },
-      async authorize(credentials) {
-        const { login, password } = credentials ?? {};
-        if (!login || !password) return null;
-
-        const existingUser = await prisma.user.findUnique({
-          where: { username },
-        });
-        if (!existingUser) {
-          return null;
-        }
-
-        const passwordMatch = await compare(password, existingUser.password);
-        if (!passwordMatch) {
-          return null;
-        }
-
-        return { id: existingUser.id, username: existingUser.username };
-      },
-    }),
-  ],
+export const { auth, handlers, signIn, signOut } = NextAuth({
+  adapter: PrismaAdapter(prisma),
   session: {
     strategy: "jwt",
   },
   pages: {
-    signIn: "/sign-in",
+    signIn: "/auth/signin",
   },
-  callbacks: {
-    async jwt({ token, existingUser }) {
-      if (existingUser) {
-        token.id = existingUser.id;
-      }
-      return token;
-    },
-    async session({ session, token }) {
-      session.existingUser.id = token.id;
+  adapter: PrismaAdapter(prisma),
+  providers: [
+    CredentialsProvider({
+      name: "Credentials",
+      credentials: {
+        username: { label: "Username", type: "text", placeholder: "jsmith" },
+        password: { label: "Password", type: "password" },
+      },
+      async authorize(credentials) {
+        if (!credentials?.username || !credentials?.password) return null;
 
-      return session;
-    },
-  },
-};
+        const registeredUser = await Prisma.user.findUnique({
+          where: { username: credentials?.username },
+        });
+        if (!user) return null;
+
+        const isPasswordValid = compare(
+          credentials.password,
+          registeredUser.password
+        );
+        if (!isPasswordValid) return null;
+
+        return { id: registeredUser.id, username: registeredUser.username };
+      },
+    }),
+  ],
+});

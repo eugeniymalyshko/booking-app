@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { signIn } from "next-auth/react";
-import Button from "../Button/Button";
+import Button from "./Button/Button";
 
 export default function signInForm() {
   const [username, setUsername] = useState("");
